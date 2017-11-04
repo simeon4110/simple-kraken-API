@@ -10,7 +10,7 @@ def update_kraken_price():
     request_data = json.loads(request.text)
 
     # parse API request into variables (the key "XXBTZUSD" needs to be updated
-	# if you want to use another currency.
+    # if you want to use another currency.
     last_trade, last_trade_volume = request_data['result']['XXBTZUSD']['c']
     volume, volume_24 = request_data['result']['XXBTZUSD']['v']
     low, low_24 = request_data['result']['XXBTZUSD']['l']
