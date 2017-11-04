@@ -1,5 +1,8 @@
+import json, requests
+
+
 def update_kraken_price():
-    """ Function called via zappa scheduler, updates prices for Kraken """
+    """ Updates prices for Kraken """
     currency = "USD" # update later to accept other currencies
     url = "https://api.kraken.com/0/public/Ticker?pair=XBT" + currency
 
