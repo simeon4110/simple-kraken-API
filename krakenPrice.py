@@ -15,7 +15,7 @@ def update_kraken_price():
     volume, volume_24 = request_data['result']['XXBTZUSD']['v']
     low, low_24 = request_data['result']['XXBTZUSD']['l']
     high, high_24 = request_data['result']['XXBTZUSD']['h']
-    open = request_data['result']['XXBTZUSD']['o']
+    open_price = request_data['result']['XXBTZUSD']['o']
     ask, ask_whole_volume, ask_lot_volume = request_data['result']['XXBTZUSD']['a']
     bid, bid_whole_volume, bid_lot_volume = request_data['result']['XXBTZUSD']['b']
 
@@ -30,7 +30,7 @@ def update_kraken_price():
         'bid': float(bid),
         'bid_lot': float(bid_lot_volume),
         'bid_whole': float(bid_whole_volume),
-        'open': float(open),
+        'open': float(open_price),
         'high': float(high),
         'high_24': float(high_24),
         'low': float(low),
