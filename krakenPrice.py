@@ -1,9 +1,8 @@
 import json, requests
 
 
-def update_kraken_price():
+def update_kraken_price(currency):
     """ Updates prices for Kraken """
-    currency = "USD" # update later to accept other currencies
     url = "https://api.kraken.com/0/public/Ticker?pair=XBT" + currency
 
     request = requests.get(url)
@@ -11,13 +10,13 @@ def update_kraken_price():
 
     # parse API request into variables (the key "XXBTZUSD" needs to be updated
     # if you want to use another currency.
-    last_trade, last_trade_volume = request_data['result']['XXBTZUSD']['c']
-    volume, volume_24 = request_data['result']['XXBTZUSD']['v']
-    low, low_24 = request_data['result']['XXBTZUSD']['l']
-    high, high_24 = request_data['result']['XXBTZUSD']['h']
-    open_price = request_data['result']['XXBTZUSD']['o']
-    ask, ask_whole_volume, ask_lot_volume = request_data['result']['XXBTZUSD']['a']
-    bid, bid_whole_volume, bid_lot_volume = request_data['result']['XXBTZUSD']['b']
+    last_trade, last_trade_volume = request_data['result']['XXBTZ' + currency]['c']
+    volume, volume_24 = request_data['result']['XXBTZ' + currency]['v']
+    low, low_24 = request_data['result']['XXBTZ' + currency]['l']
+    high, high_24 = request_data['result']['XXBTZ' + currency]['h']
+    open_price = request_data['result']['XXBTZ' + currency]['o']
+    ask, ask_whole_volume, ask_lot_volume = request_data['result']['XXBTZ' + currency]['a']
+    bid, bid_whole_volume, bid_lot_volume = request_data['result']['XXBTZ' + currency]['b']
 
     # parse variables into dict, convert all numbers to floats
     request_data = {
@@ -38,5 +37,11 @@ def update_kraken_price():
         'volume': float(volume),
         'volume_24': float(volume_24)
         }
-	
-	return(request_data)
+    
+    return(request_data)
+
+# change currency to get a different currency pair  
+request_data = update_kraken_price("USD")
+
+print(request_data)
+
