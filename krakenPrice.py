@@ -1,4 +1,5 @@
-import json, requests
+import json
+import requests
 
 
 def update_kraken_price(currency):
@@ -9,13 +10,16 @@ def update_kraken_price(currency):
     request_data = json.loads(request.text)
 
     # parse API request into variables
-    last_trade, last_trade_volume = request_data['result']['XXBTZ' + currency]['c']
+    last_trade, last_trade_volume = request_data['result']['XXBTZ' + currency][
+        'c']
     volume, volume_24 = request_data['result']['XXBTZ' + currency]['v']
     low, low_24 = request_data['result']['XXBTZ' + currency]['l']
     high, high_24 = request_data['result']['XXBTZ' + currency]['h']
     open_price = request_data['result']['XXBTZ' + currency]['o']
-    ask, ask_whole_volume, ask_lot_volume = request_data['result']['XXBTZ' + currency]['a']
-    bid, bid_whole_volume, bid_lot_volume = request_data['result']['XXBTZ' + currency]['b']
+    ask, ask_whole_volume, ask_lot_volume = \
+    request_data['result']['XXBTZ' + currency]['a']
+    bid, bid_whole_volume, bid_lot_volume = \
+    request_data['result']['XXBTZ' + currency]['b']
 
     # parse variables into dict, convert all numbers to floats
     request_data = {
@@ -35,12 +39,12 @@ def update_kraken_price(currency):
         'low_24': float(low_24),
         'volume': float(volume),
         'volume_24': float(volume_24)
-        }
-    
-    return(request_data)
+    }
 
-# change currency to get a different currency pair  
+    return (request_data)
+
+
+# change currency to get a different currency pair
 request_data = update_kraken_price("USD")
 
 print(request_data)
-
