@@ -3,7 +3,12 @@ import requests
 
 
 def update_kraken_price(currency):
-    """ Updates prices for Kraken """
+    """
+    Obtains and parses request to Kraken API.
+
+    :param currency: The desired currency (i.e. USD, CAD, etc.)
+    :return: A dict of parsed values.
+    """
     url = "https://api.kraken.com/0/public/Ticker?pair=XBT" + currency
 
     request = requests.get(url)
